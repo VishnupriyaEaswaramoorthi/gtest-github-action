@@ -15,8 +15,8 @@ class string_calculator_add_Parameter_Fixture:
 INSTANTIATE_TEST_SUITE_P(SingleNumerParameter,
                          string_calculator_add_Parameter_Fixture,
                          testing::Values(
-                                        {"1",1},
-                                        {"1,2",3}
+                                        std::make_tuple("1", 1),
+                                        std::make_tuple("1,2",3)
   ));
 
 TEST(string_calculator_add_when_passed_a_single_number,returns_0_for_empty_string){
@@ -42,7 +42,6 @@ TEST_F(string_calculator_add_Fixture,when_passed_a_single_number_returns_0_for_z
 
 TEST_P(string_calculator_add_Parameter_Fixture,when_passed_a_single_Or_Multiple_Number_with_Delimiters_returns_Sum){
  //Arrange
-  StringCalculator calculator;
   string input=std::get<0>(GetParam());
   int expectedsum=std::get<1>(GetParam());
   //Act
